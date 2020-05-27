@@ -63,7 +63,7 @@
 /******/
 /******/ 	var hotApplyOnUpdate = true;
 /******/ 	// eslint-disable-next-line no-unused-vars
-/******/ 	var hotCurrentHash = "6e464daa71f0262c8e3e";
+/******/ 	var hotCurrentHash = "53a230ee23e79ef4eb66";
 /******/ 	var hotRequestTimeout = 10000;
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentChildModule;
@@ -859,6 +859,18 @@
 /************************************************************************/
 /******/ ({
 
+/***/ "./models/PostItem.js":
+/*!****************************!*\
+  !*** ./models/PostItem.js ***!
+  \****************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\nfunction _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError(\"Cannot call a class as a function\"); } }\n\nvar PostItem = function PostItem(postId) {\n  _classCallCheck(this, PostItem);\n\n  this.postId = postId;\n};\n\n/* harmony default export */ __webpack_exports__[\"default\"] = (new PostItem(123));\n\n//# sourceURL=webpack:///./models/PostItem.js?");
+
+/***/ }),
+
 /***/ "./node_modules/ansi-html/index.js":
 /*!*****************************************!*\
   !*** ./node_modules/ansi-html/index.js ***!
@@ -873,12 +885,12 @@ eval("\n\nfunction _typeof(obj) { \"@babel/helpers - typeof\"; if (typeof Symbol
 
 /***/ "./node_modules/css-loader/dist/cjs.js?!./src/RootView.css":
 /*!**************************************************************************!*\
-  !*** ./node_modules/css-loader/dist/cjs.js??ref--5-1!./src/RootView.css ***!
+  !*** ./node_modules/css-loader/dist/cjs.js??ref--6-1!./src/RootView.css ***!
   \**************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-eval("// Imports\nvar ___CSS_LOADER_API_IMPORT___ = __webpack_require__(/*! ../node_modules/css-loader/dist/runtime/api.js */ \"./node_modules/css-loader/dist/runtime/api.js\");\nexports = ___CSS_LOADER_API_IMPORT___(false);\n// Module\nexports.push([module.i, \"\\r\\n._1dTZKZ4WOrX9P3Js9Mh0Vj {\\r\\n    font-style: italic;\\r\\n    background: aqua;\\r\\n}\", \"\"]);\n// Exports\nexports.locals = {\n\t\"roottxt\": \"_1dTZKZ4WOrX9P3Js9Mh0Vj\"\n};\nmodule.exports = exports;\n\n\n//# sourceURL=webpack:///./src/RootView.css?./node_modules/css-loader/dist/cjs.js??ref--5-1");
+eval("// Imports\nvar ___CSS_LOADER_API_IMPORT___ = __webpack_require__(/*! ../node_modules/css-loader/dist/runtime/api.js */ \"./node_modules/css-loader/dist/runtime/api.js\");\nexports = ___CSS_LOADER_API_IMPORT___(false);\n// Module\nexports.push([module.i, \"\\r\\n._1dTZKZ4WOrX9P3Js9Mh0Vj {\\r\\n    font-style: italic;\\r\\n    background: aqua;\\r\\n}\", \"\"]);\n// Exports\nexports.locals = {\n\t\"roottxt\": \"_1dTZKZ4WOrX9P3Js9Mh0Vj\"\n};\nmodule.exports = exports;\n\n\n//# sourceURL=webpack:///./src/RootView.css?./node_modules/css-loader/dist/cjs.js??ref--6-1");
 
 /***/ }),
 
@@ -1442,7 +1454,7 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var reac
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-eval("var api = __webpack_require__(/*! ../node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js */ \"./node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js\");\n            var content = __webpack_require__(/*! !../node_modules/css-loader/dist/cjs.js??ref--5-1!./RootView.css */ \"./node_modules/css-loader/dist/cjs.js?!./src/RootView.css\");\n\n            content = content.__esModule ? content.default : content;\n\n            if (typeof content === 'string') {\n              content = [[module.i, content, '']];\n            }\n\nvar options = {};\n\noptions.insert = \"head\";\noptions.singleton = false;\n\nvar update = api(content, options);\n\n\nif (true) {\n  if (!content.locals || module.hot.invalidate) {\n    var isEqualLocals = function isEqualLocals(a, b) {\n  if (!a && b || a && !b) {\n    return false;\n  }\n\n  var p;\n\n  for (p in a) {\n    if (a[p] !== b[p]) {\n      return false;\n    }\n  }\n\n  for (p in b) {\n    if (!a[p]) {\n      return false;\n    }\n  }\n\n  return true;\n};\n    var oldLocals = content.locals;\n\n    module.hot.accept(\n      /*! !../node_modules/css-loader/dist/cjs.js??ref--5-1!./RootView.css */ \"./node_modules/css-loader/dist/cjs.js?!./src/RootView.css\",\n      function () {\n        content = __webpack_require__(/*! !../node_modules/css-loader/dist/cjs.js??ref--5-1!./RootView.css */ \"./node_modules/css-loader/dist/cjs.js?!./src/RootView.css\");\n\n              content = content.__esModule ? content.default : content;\n\n              if (typeof content === 'string') {\n                content = [[module.i, content, '']];\n              }\n\n              if (!isEqualLocals(oldLocals, content.locals)) {\n                module.hot.invalidate();\n\n                return;\n              }\n\n              oldLocals = content.locals;\n\n              update(content);\n      }\n    )\n  }\n\n  module.hot.dispose(function() {\n    update();\n  });\n}\n\nmodule.exports = content.locals || {};\n\n//# sourceURL=webpack:///./src/RootView.css?");
+eval("var api = __webpack_require__(/*! ../node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js */ \"./node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js\");\n            var content = __webpack_require__(/*! !../node_modules/css-loader/dist/cjs.js??ref--6-1!./RootView.css */ \"./node_modules/css-loader/dist/cjs.js?!./src/RootView.css\");\n\n            content = content.__esModule ? content.default : content;\n\n            if (typeof content === 'string') {\n              content = [[module.i, content, '']];\n            }\n\nvar options = {};\n\noptions.insert = \"head\";\noptions.singleton = false;\n\nvar update = api(content, options);\n\n\nif (true) {\n  if (!content.locals || module.hot.invalidate) {\n    var isEqualLocals = function isEqualLocals(a, b) {\n  if (!a && b || a && !b) {\n    return false;\n  }\n\n  var p;\n\n  for (p in a) {\n    if (a[p] !== b[p]) {\n      return false;\n    }\n  }\n\n  for (p in b) {\n    if (!a[p]) {\n      return false;\n    }\n  }\n\n  return true;\n};\n    var oldLocals = content.locals;\n\n    module.hot.accept(\n      /*! !../node_modules/css-loader/dist/cjs.js??ref--6-1!./RootView.css */ \"./node_modules/css-loader/dist/cjs.js?!./src/RootView.css\",\n      function () {\n        content = __webpack_require__(/*! !../node_modules/css-loader/dist/cjs.js??ref--6-1!./RootView.css */ \"./node_modules/css-loader/dist/cjs.js?!./src/RootView.css\");\n\n              content = content.__esModule ? content.default : content;\n\n              if (typeof content === 'string') {\n                content = [[module.i, content, '']];\n              }\n\n              if (!isEqualLocals(oldLocals, content.locals)) {\n                module.hot.invalidate();\n\n                return;\n              }\n\n              oldLocals = content.locals;\n\n              update(content);\n      }\n    )\n  }\n\n  module.hot.dispose(function() {\n    update();\n  });\n}\n\nmodule.exports = content.locals || {};\n\n//# sourceURL=webpack:///./src/RootView.css?");
 
 /***/ }),
 
@@ -1454,7 +1466,7 @@ eval("var api = __webpack_require__(/*! ../node_modules/style-loader/dist/runtim
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ \"./node_modules/react/index.js\");\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);\n/* harmony import */ var _RootView_css__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./RootView.css */ \"./src/RootView.css\");\n/* harmony import */ var _RootView_css__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_RootView_css__WEBPACK_IMPORTED_MODULE_1__);\n\n //console.log(\"MonsteR\", styles);\n\nvar RootView = function RootView() {\n  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(\"div\", {\n    id: \"approot\",\n    className: _RootView_css__WEBPACK_IMPORTED_MODULE_1___default.a.roottxt\n  }, \"Hello World\");\n};\n\n/* harmony default export */ __webpack_exports__[\"default\"] = (RootView);\n\n//# sourceURL=webpack:///./src/RootView.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ \"./node_modules/react/index.js\");\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);\n/* harmony import */ var _RootView_css__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./RootView.css */ \"./src/RootView.css\");\n/* harmony import */ var _RootView_css__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_RootView_css__WEBPACK_IMPORTED_MODULE_1__);\n/* harmony import */ var _models_PostItem__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../models/PostItem */ \"./models/PostItem.js\");\n\n\n\n\nvar ListItem = function ListItem(props) {\n  console.log(props);\n  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(\"div\", null, \"Hello World\");\n};\n\nvar RootView = function RootView() {\n  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(\"div\", {\n    id: \"approot\",\n    className: _RootView_css__WEBPACK_IMPORTED_MODULE_1___default.a.roottxt\n  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(ListItem, {\n    data: _models_PostItem__WEBPACK_IMPORTED_MODULE_2__[\"default\"]\n  }));\n};\n\n/* harmony default export */ __webpack_exports__[\"default\"] = (RootView);\n\n//# sourceURL=webpack:///./src/RootView.js?");
 
 /***/ }),
 
