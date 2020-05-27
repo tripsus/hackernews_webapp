@@ -1,8 +1,10 @@
 import React from "react";
 import styles from "./RootView.css"
-import {PostItemList} from "../models/PostItemList.ts"
+import {PostItemList} from "../store/PostItemList.ts"
+import { observer } from "mobx-react";
+import { getRootStore } from "satcheljs";
 
-let ListItem = (props) => {
+let ListItem = observer((props) => {
     console.log(props.item);
     return(
         <div>
@@ -10,17 +12,19 @@ let ListItem = (props) => {
         </div>
         
     );
-}
+});
 
-let RootView = () => {
-    
+let RootView = observer(() => {
+    let postList = getRootStore().get('postListStore').postList;
+    console.log("MonsteR::", postList);
     return(
     <div id="approot" className={styles.roottxt}>
-        {PostItemList.map( (item) => 
+        {postList.map( (item) => 
             {
+                console.log("MonsteR::", item);
                 return <ListItem item={item} key={item.postId}/>
             })
         }
     </div>);
-}
+});
 export default RootView;
