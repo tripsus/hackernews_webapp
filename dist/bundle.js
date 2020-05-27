@@ -63,7 +63,7 @@
 /******/
 /******/ 	var hotApplyOnUpdate = true;
 /******/ 	// eslint-disable-next-line no-unused-vars
-/******/ 	var hotCurrentHash = "53a230ee23e79ef4eb66";
+/******/ 	var hotCurrentHash = "532c4e6623a993ba7678";
 /******/ 	var hotRequestTimeout = 10000;
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentChildModule;
@@ -859,15 +859,27 @@
 /************************************************************************/
 /******/ ({
 
-/***/ "./models/PostItem.js":
+/***/ "./models/PostItem.ts":
 /*!****************************!*\
-  !*** ./models/PostItem.js ***!
+  !*** ./models/PostItem.ts ***!
   \****************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\nfunction _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError(\"Cannot call a class as a function\"); } }\n\nvar PostItem = function PostItem(postId) {\n  _classCallCheck(this, PostItem);\n\n  this.postId = postId;\n};\n\n/* harmony default export */ __webpack_exports__[\"default\"] = (new PostItem(123));\n\n//# sourceURL=webpack:///./models/PostItem.js?");
+eval("\r\nObject.defineProperty(exports, \"__esModule\", { value: true });\r\nexports.PostItem = void 0;\r\nvar PostItem = /** @class */ (function () {\r\n    function PostItem(postId, owner, score, time, title, type, url) {\r\n        this.postId = postId;\r\n        this.owner = owner;\r\n        this.score = score;\r\n        this.time = time;\r\n        this.title = title;\r\n        this.type = type;\r\n        this.url = url;\r\n    }\r\n    return PostItem;\r\n}());\r\nexports.PostItem = PostItem;\r\n\n\n//# sourceURL=webpack:///./models/PostItem.ts?");
+
+/***/ }),
+
+/***/ "./models/PostItemList.ts":
+/*!********************************!*\
+  !*** ./models/PostItemList.ts ***!
+  \********************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+eval("\r\nObject.defineProperty(exports, \"__esModule\", { value: true });\r\nexports.PostItemList = void 0;\r\nvar PostItem_ts_1 = __webpack_require__(/*! ./PostItem.ts */ \"./models/PostItem.ts\");\r\nexports.PostItemList = Array();\r\nexports.PostItemList.push(new PostItem_ts_1.PostItem(1, \"MonsteR\", 23, 123124123, \"Supabase (YC S20) – An open source Firebase alternative\", \"post\", \"https://news.ycombinator.com\"));\r\nexports.PostItemList.push(new PostItem_ts_1.PostItem(2, \"MonsteR\", 23, 123124123, \"Ask HN: Any job boards and age-friendly companies for older developers?\", \"post\", \"https://news.ycombinator.com\"));\r\nexports.PostItemList.push(new PostItem_ts_1.PostItem(3, \"MonsteR\", 23, 123124123, \"Qt Online Installer 3.2.3 \", \"post\", \"https://news.ycombinator.com\"));\r\nexports.PostItemList.push(new PostItem_ts_1.PostItem(4, \"MonsteR\", 23, 123124123, \"AWS services explained in one line each \", \"post\", \"https://news.ycombinator.com\"));\r\n\n\n//# sourceURL=webpack:///./models/PostItemList.ts?");
 
 /***/ }),
 
@@ -1443,7 +1455,7 @@ eval("/*\n\tMIT License http://www.opensource.org/licenses/mit-license.php\n\tAu
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react-dom */ \"./node_modules/react-dom/index.js\");\n/* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react_dom__WEBPACK_IMPORTED_MODULE_0__);\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ \"./node_modules/react/index.js\");\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_1__);\n/* harmony import */ var _RootView__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./RootView */ \"./src/RootView.js\");\n\n\n\nreact_dom__WEBPACK_IMPORTED_MODULE_0___default.a.render( /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_RootView__WEBPACK_IMPORTED_MODULE_2__[\"default\"], null), document.getElementById(\"root\"));\n\n//# sourceURL=webpack:///./src/App.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react-dom */ \"./node_modules/react-dom/index.js\");\n/* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react_dom__WEBPACK_IMPORTED_MODULE_0__);\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ \"./node_modules/react/index.js\");\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_1__);\n/* harmony import */ var _RootView_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./RootView.js */ \"./src/RootView.js\");\n\n\n\nreact_dom__WEBPACK_IMPORTED_MODULE_0___default.a.render( /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_RootView_js__WEBPACK_IMPORTED_MODULE_2__[\"default\"], null), document.getElementById(\"root\"));\n\n//# sourceURL=webpack:///./src/App.js?");
 
 /***/ }),
 
@@ -1466,7 +1478,7 @@ eval("var api = __webpack_require__(/*! ../node_modules/style-loader/dist/runtim
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ \"./node_modules/react/index.js\");\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);\n/* harmony import */ var _RootView_css__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./RootView.css */ \"./src/RootView.css\");\n/* harmony import */ var _RootView_css__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_RootView_css__WEBPACK_IMPORTED_MODULE_1__);\n/* harmony import */ var _models_PostItem__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../models/PostItem */ \"./models/PostItem.js\");\n\n\n\n\nvar ListItem = function ListItem(props) {\n  console.log(props);\n  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(\"div\", null, \"Hello World\");\n};\n\nvar RootView = function RootView() {\n  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(\"div\", {\n    id: \"approot\",\n    className: _RootView_css__WEBPACK_IMPORTED_MODULE_1___default.a.roottxt\n  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(ListItem, {\n    data: _models_PostItem__WEBPACK_IMPORTED_MODULE_2__[\"default\"]\n  }));\n};\n\n/* harmony default export */ __webpack_exports__[\"default\"] = (RootView);\n\n//# sourceURL=webpack:///./src/RootView.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ \"./node_modules/react/index.js\");\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);\n/* harmony import */ var _RootView_css__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./RootView.css */ \"./src/RootView.css\");\n/* harmony import */ var _RootView_css__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_RootView_css__WEBPACK_IMPORTED_MODULE_1__);\n/* harmony import */ var _models_PostItemList_ts__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../models/PostItemList.ts */ \"./models/PostItemList.ts\");\n/* harmony import */ var _models_PostItemList_ts__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_models_PostItemList_ts__WEBPACK_IMPORTED_MODULE_2__);\n\n\n\n\nvar ListItem = function ListItem(props) {\n  console.log(props.item);\n  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(\"div\", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(\"a\", {\n    href: props.item.url\n  }, props.item.title));\n};\n\nvar RootView = function RootView() {\n  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(\"div\", {\n    id: \"approot\",\n    className: _RootView_css__WEBPACK_IMPORTED_MODULE_1___default.a.roottxt\n  }, _models_PostItemList_ts__WEBPACK_IMPORTED_MODULE_2__[\"PostItemList\"].map(function (item) {\n    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(ListItem, {\n      item: item,\n      key: item.postId\n    });\n  }));\n};\n\n/* harmony default export */ __webpack_exports__[\"default\"] = (RootView);\n\n//# sourceURL=webpack:///./src/RootView.js?");
 
 /***/ }),
 
