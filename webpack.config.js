@@ -9,6 +9,11 @@ module.exports = {
       rules:
       [
         {
+            test: /\.(ts|tsx)?$/,
+            loader: 'ts-loader',
+            exclude: /node_modules/,
+        },
+        {
             test: /\.(js|jsx)?$/,
             use:[
                 {
@@ -33,7 +38,7 @@ module.exports = {
           }
       ]
   },
-  resolve: { extensions: ["*", ".js", ".jsx"] },
+  resolve: { extensions: ["*", ".js", ".jsx", "ts", "tsx"] },
   output: {
     globalObject:"this",
     path: path.resolve(__dirname, "dist/"),
