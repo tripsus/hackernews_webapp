@@ -1,9 +1,11 @@
 import {action} from 'satcheljs'
-import { PostItem } from '../store/PostItem.ts';
+import { PostItem } from '../store/PostItem';
 
 export const addPost = action(
     'ADD_POST',
-    (post: PostItem) => ({post: post})
+    (post: PostItem) => {
+        console.log("Monster::Action");
+        return {post: post}}
 );
 
 // addPost(new PostItem(1, "MonsteR", 23, 123124123, "Supabase (YC S20) – An open source Firebase alternative", "post", "https://news.ycombinator.com"));

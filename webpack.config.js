@@ -50,7 +50,7 @@ module.exports = {
     port: 3000,
     publicPath: "http://localhost:3000/dist/",
     hotOnly: true,
-    writeToDisk: true
+    writeToDisk: false
   },
   plugins: [
       new webpack.HotModuleReplacementPlugin(),

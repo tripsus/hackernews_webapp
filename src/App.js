@@ -2,10 +2,10 @@
 import ReactDOM from "react-dom";
 import React from "react";
 import RootView from "./RootView.js";
-//import 'mobx-react-lite/batchingForReactDom';
+import 'mobx-react-lite/batchingForReactDom';
 import { PostItem } from '../store/PostItem.ts'
 import {addPost} from "../action/action.ts";
-import { dispatch } from "satcheljs";
+import {postMutator} from "../mutator/PostMutator.ts";
 
 ReactDOM.render(<RootView/>, document.getElementById("root"));
 
@@ -16,7 +16,7 @@ postItemArray.push(new PostItem(2, "MonsteR", 23, 123124123, "Ask HN: Any job bo
 postItemArray.push(new PostItem(3, "MonsteR", 23, 123124123, "Ask HN: Any job boards and age-friendly companies for older developers?", "post", "https://news.ycombinator.com"));
 
 setInterval(function(){ 
-    console.log("SetInterval::", count);
+    console.log("MonsteR::SetInterval::", count);
     count = count % 2;
-    dispatch(addPost(postItemArray[count++]));
+    addPost(postItemArray[count++]);
  }, 3000);
