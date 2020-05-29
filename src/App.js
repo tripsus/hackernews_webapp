@@ -7,8 +7,6 @@ import { PostItem } from '../store/PostItem.ts'
 import {addPost} from "../action/action.ts";
 import {postMutator} from "../mutator/PostMutator.ts";
 
-ReactDOM.render(<RootView/>, document.getElementById("root"));
-
 let count = 0;
 let postItemArray = new Array();
 postItemArray.push(new PostItem(1, "MonsteR", 23, 123124123, "Supabase (YC S20) – An open source Firebase alternative", "post", "https://news.ycombinator.com"));
@@ -19,4 +17,8 @@ setInterval(function(){
     console.log("MonsteR::SetInterval::", count);
     count = count % 2;
     addPost(postItemArray[count++]);
+    console.log("MonsteR:: postListStore", )
  }, 3000);
+
+ReactDOM.render(<RootView/>, document.getElementById("root"));
+
