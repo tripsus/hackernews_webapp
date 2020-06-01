@@ -10,6 +10,13 @@ export const addPost = action(
 export const fetchTopPosts = action(
     'TOP_POSTS_FETCH',
     (postType: string) => { 
-            return {postType:postType}
-            }
+        return {postType:postType}
+    }
 );
+
+export const fetchPosts = action(
+    'FETCH_NEXT_SET',
+    (postType: string) => {
+        return {postType:postType}
+    }
+)

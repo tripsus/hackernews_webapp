@@ -1,5 +1,36 @@
 
 .roottxt {
-    font-style: italic;
-    background: aqua;
+
+}
+.listItem {
+    flex: 1;
+    background-color: rgb(241, 228, 211);
+    flex-direction: column;
+    margin-left: 100px;
+    margin-right: 100px;
+    padding-left: 50px;
+    padding-right: 50px;
+}
+.titleRow {
+    flex-direction: row;
+    flex:1;
+    align-self: center;
+    align-content: center;
+}
+.titleRowText {
+    color: black;
+    font-style: oblique;
+    font-family: Calibri;
+    font-size: large;
+}
+.metaDataRowContainer {
+    flex-direction: row;
+}
+.metaDataRowTable {
+    border-right: green;
+}
+
+.metaDataRowText {
+    font: lighter;
+    color: darkgray;
 }

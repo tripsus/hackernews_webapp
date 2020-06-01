@@ -1,39 +1,54 @@
 import {orchestrator} from 'satcheljs';
-import {fetchTopPosts, addPost} from '../action/action.ts';
+import {fetchTopPosts, fetchPosts, addPost} from '../action/action.ts';
 import {createPostItem} from '../store/PostItem.ts';
+import {PostFetchDetails, postIdList, POST_FETCH_THRESHOLD} from './config.ts'
 
 const axios = require('axios');
 
 const baseUrl = "https://hacker-news.firebaseio.com/v0/";
 
-export const fetchPostOrchestrator =  orchestrator(fetchTopPosts, (actionMessage) => {
+export const fetchTopPostOrchestrator =  orchestrator(fetchTopPosts, (actionMessage) => {
     fetchTopPostsApi()
 });
 
-
+export const fetchPostsOrchestrator = orchestrator(fetchPosts, () => {
+    fetchPostDetailsForIds();
+})
 
 async function fetchTopPostsApi() {
+    console.log("MonsteR::fetchTopPostsApi");
     await axios.get("https://hacker-news.firebaseio.com/v0/topstories.json")
     .then(
         function handleSuccess(resp){
-            fetchPostDetailsForIds(resp.data);
+            resp.data.map((id:number) => postIdList.push(id));
+            PostFetchDetails.TOTAL_POSTS = postIdList.length;
+            fetchPostDetailsForIds();
         })
     .catch(
         function handleFailure(err){
-            console.log("Monster::fetchTopPostsApi failed with error", err);
+            console.error("Monster::fetchTopPostsApi failed with error", err);
         })
 }
 
-function fetchPostDetailsForIds(postIds:Array<number>){
-    let count:number = 0;
+function fetchPostDetailsForIds(){
+    console.debug("MonsteR::fetchPostDetailsForIds");
+
+    const totalPostIds = postIdList.length;
+    if (totalPostIds === 0){
+        console.error("MonsteR:: Not able to fetch any post do we have a valid internet connection?")
+    }
+
+    console.debug("MonsteR::", postIdList);
+
+    let postsFetchEndIndex:number = PostFetchDetails.POSTS_FETCHED + POST_FETCH_THRESHOLD;
+    // If we have already fetched top 500 we don't have anything more to fetch
+    postsFetchEndIndex = (postsFetchEndIndex >= totalPostIds) ? totalPostIds : postsFetchEndIndex;
+    for(let i=PostFetchDetails.POSTS_FETCHED; i<postsFetchEndIndex; i++){
+        console.debug("Fetching postdetail at index ", i );
+        fetchPostDetail(postIdList[i]);
+        PostFetchDetails.POSTS_FETCHED += 1;
+    }
     
-    console.log("Handling suc", postIds);
-    postIds.map((postId) => {
-        if (count < 5){
-            fetchPostDetail(postId);
-            count++;
-        }
-    })
 }
 
 async function fetchPostDetail(postId: number) {
