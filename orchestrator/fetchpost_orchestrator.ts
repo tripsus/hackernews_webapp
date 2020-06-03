@@ -44,7 +44,6 @@ function fetchPostDetailsForIds(){
     // If we have already fetched top 500 we don't have anything more to fetch
     postsFetchEndIndex = (postsFetchEndIndex >= totalPostIds) ? totalPostIds : postsFetchEndIndex;
     for(let i=PostFetchDetails.POSTS_FETCHED; i<postsFetchEndIndex; i++){
-        console.debug("Fetching postdetail at index ", i );
         fetchPostDetail(postIdList[i]);
         PostFetchDetails.POSTS_FETCHED += 1;
     }

@@ -82,13 +82,22 @@ export function createPostItem(data: any){
     const type = data.hasOwnProperty(postDetailJsonClassMap.get(TYPE)) ? data[postDetailJsonClassMap.get(TYPE)] : "None";
     const title = data.hasOwnProperty(postDetailJsonClassMap.get(TITLE)) ? data[postDetailJsonClassMap.get(TITLE)] : 0;
     const url = data.hasOwnProperty(postDetailJsonClassMap.get(URL)) ? data[postDetailJsonClassMap.get(URL)] : 0;
+
+    // Get time difference from unix time
     let timeString = getTimeDifferenceString(time);
     let iPostItem = new PostItem(postId, owner, score, timeString, title, type, url);
+    
+    // Fetch more properties
     if(data.hasOwnProperty(postDetailJsonClassMap.get(KIDS))){
         let kids:Array<number> = data[postDetailJsonClassMap.get(KIDS)];
         let len = getCommentsString(kids.length);
         console.log("Comments length is", len);
-        iPostItem.commentsCount = Number(len);
+        iPostItem.commentsCount = parseInt(len);
     }
+
+    if(data.hasOwnProperty(postDetailJsonClassMap.get(OWNER))){
+        iPostItem.owner = data[postDetailJsonClassMap.get(OWNER)];
+    }
+    
     return iPostItem;
 }

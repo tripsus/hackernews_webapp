@@ -4,6 +4,6 @@ export class PostFetchDetails{
     public static POSTS_FETCHED:number = 0;
 }
 
-export const POST_FETCH_THRESHOLD = 50;
+export const POST_FETCH_THRESHOLD = 5;
 // Holds the list of PosIds for which we need to fetch PostDetails consumed by PostItem.
 export const postIdList:Array<number> = new Array<number>();

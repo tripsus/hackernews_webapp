@@ -1,36 +1,93 @@
 
 .roottxt {
+ display: flex;
+}
 
+.table {
+    background-color: blanchedalmond;
+    border-spacing: 0;
 }
+
+/* table row used by ListItem*/
 .listItem {
-    flex: 1;
     background-color: rgb(241, 228, 211);
-    flex-direction: column;
-    margin-left: 100px;
     margin-right: 100px;
-    padding-left: 50px;
-    padding-right: 50px;
 }
-.titleRow {
+
+.listItem:hover{
+    background-color: #ddd;
+}
+
+.UpVote{
+    border-right: 0.5px solid black;
+    border-bottom: 0.5px solid black;
+    padding-left: 5px;
+    padding-right: 5px;
+}
+.UpVoteText{
+    text-align: center;
+    padding-top: 5px;
+}
+.PostDetail {
+    border-bottom: 0.5px solid black;
+    padding-left: 5px;
+    padding-right: 5px;
+    display: flex;
+    flex-direction: column;
+}
+
+.Comment{
+    border-left: 0.5px solid black;
+    border-bottom: 0.5px solid black;
+    padding-left: 5px;
+    padding-right: 5px;
+}
+
+.CommentText{
+    padding-top: 5px;
+    text-align: center;
+}
+.titleRowContainer {
     flex-direction: row;
-    flex:1;
     align-self: center;
     align-content: center;
+    text-align: center;
 }
 .titleRowText {
     color: black;
     font-style: oblique;
     font-family: Calibri;
-    font-size: large;
+    font-size: 30px;
 }
+
 .metaDataRowContainer {
+    display: flex;
     flex-direction: row;
-}
-.metaDataRowTable {
-    border-right: green;
+    align-content: center;
+    margin-left: 5px;
+    margin-right: 5px;
 }
 
 .metaDataRowText {
     font: lighter;
     color: darkgray;
+    flex:1;
+}
+
+.time{
+    flex: 1;
+    align-self: flex-start;
+    padding-left: 20px;
+    margin-top: 15px;
+}
+
+.owner{
+    align-self: flex-end;
+    flex:1;
+    text-align: right;
+    padding-right: 20px;
+}
+
+.time .owner{
+    flex:1
 }
