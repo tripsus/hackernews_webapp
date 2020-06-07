@@ -1,17 +1,17 @@
 
-import ReactDOM from "react-dom";
 import React from "react";
-import RootView from "./MainPage.js";
 import 'mobx-react-lite/batchingForReactDom';
-import {fetchTopPosts} from "../action/action.ts";
+import Routes from "./Routes"
 
-//Keep below mutator here dont remove otherwise they are not registerd.
-import {postMutator} from "../mutator/PostMutator.ts";
-import {fetchPostOrchestrator} from "../orchestrator/fetchpost_orchestrator.ts"
+function App() {
+    return(
+        <div>
+            <Routes/>
+        </div>
+    );
+}
+export default App;
 
-ReactDOM.render(<RootView/>, document.getElementById("root"));
-
-fetchTopPosts("top 500");
 
 
 

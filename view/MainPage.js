@@ -1,9 +1,17 @@
 import React, { useEffect } from "react";
-import styles from "./RootView.css"
+import styles from "./MainPage.css"
 import { observer } from "mobx-react";
 import { fetchPosts } from '../action/action.ts'
 import { postLists } from "../store/store.ts";
 import { throttle } from "lodash";
+
+import {fetchTopPosts} from "../action/action.ts";
+
+//Keep below mutator here dont remove otherwise they are not registerd.
+import {postMutator} from "../mutator/PostMutator.ts";
+import {fetchPostOrchestrator} from "../orchestrator/fetchpost_orchestrator.ts"
+
+fetchTopPosts("top 500");
 
 let TitleRow = observer((props) => {
     return(
@@ -69,7 +77,7 @@ let ListItem = observer((props) => {
 });
 
 
-let RootView = observer(() => {
+let PostListPageView = observer(() => {
     // Todo: Add throttling
     function handleScroll(){
         console.log("MonsteR:: Scroll Event");
@@ -85,7 +93,7 @@ let RootView = observer(() => {
             window.removeEventListener('scroll', handleScroll);
         }
     }, []);
-    //console.log("MonsteR::RootView", postListStore());
+    //console.log("MonsteR::PostListPageView", postListStore());
     return(
     <div id="approot" className={styles.roottxt}>
         <table className={styles.table}>
@@ -99,7 +107,7 @@ let RootView = observer(() => {
         </table>
     </div>);
 });
-export default RootView;
+export default PostListPageView;
 
 /*
 Importing multiple classes of CSS
