@@ -1,10 +1,10 @@
 import {mutator} from 'satcheljs';
-import { addPost } from '../action/action.ts';
-import {postListStore} from '../store/PostItemList.ts';
+import { addPost } from '../action/actions.ts';
+import {postLists} from '../store/store.ts';
 
 const postMutator =  mutator(addPost, (actionMessage) => {
     console.log("MonsteR::Mutator::", actionMessage);
-    postListStore().push(actionMessage.post);
+    postLists().push(actionMessage.post);
 });
 
 export default postMutator;

@@ -1,15 +1,15 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import styles from "./MainPage.css"
 import { observer } from "mobx-react";
-import { fetchPosts } from '../action/action.ts'
+import { fetchPosts } from '../action/actions.ts'
 import { postLists } from "../store/store.ts";
 import { throttle } from "lodash";
 
-import {fetchTopPosts} from "../action/action.ts";
+import {fetchTopPosts, fetchComments} from "../action/actions.ts";
 
 //Keep below mutator here dont remove otherwise they are not registerd.
 import {postMutator} from "../mutator/PostMutator.ts";
-import {fetchPostOrchestrator} from "../orchestrator/fetchpost_orchestrator.ts"
+import {fetchPostOrchestrator} from "../orchestrator/fetchpost_orchestrator.ts";
 
 fetchTopPosts("top 500");
 
@@ -46,8 +46,9 @@ let UpVoteView = observer((props) => {
 
 let CommentView = observer((props) => {
     function loadComments(){
-        console.debug("loadComments clicked");
+        props.onClick();
     }
+
     return(
         <td className={styles.Comment}>
             <button onClick={loadComments}>Comments</button>
@@ -66,12 +67,16 @@ let PostDetailView = observer((props) => {
 });
 
 let ListItem = observer((props) => {
-    console.log("ListItem:: ",props.item);
+    const [index, indexState] = useState(props.index);
+    function handleCommentLoad(){
+        console.log("MonsteR:: Comment clicked at index ", props.item.kids);
+        fetchComments(props.item.kids);
+    }
     return(
             <tr className={styles.listItem}>
                 <UpVoteView upVoteCount={props.item.score}/>
                 <PostDetailView {...props}/>
-                <CommentView commentsCount={props.item.commentsCount}/>
+                <CommentView commentsCount={props.item.commentsCount} onClick={handleCommentLoad}/>
             </tr>
     );
 });
@@ -98,9 +103,9 @@ let PostListPageView = observer(() => {
     <div id="approot" className={styles.roottxt}>
         <table className={styles.table}>
             <tbody>
-            {postLists().map( (item) => {
+            {postLists().map( (item, index) => {
                     // console.log("MonsteR::", item);
-                    return <ListItem item={item} key={item.postId}/>
+                    return <ListItem item={item} key={index} index={index}/>
                 })
             }
             </tbody>

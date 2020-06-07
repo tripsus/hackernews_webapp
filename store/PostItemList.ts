@@ -1,7 +1,7 @@
 import {createStore} from 'satcheljs';
-import { PostItem } from './PostItem';
+import { IPostItem } from './PostItem';
 
-const postList:Array<PostItem> = new Array<PostItem>();
-const postListStore = createStore<Array<PostItem>>('postListStore', postList);
+const postList:Array<IPostItem> = new Array<IPostItem>();
+const postListStore = createStore<Array<IPostItem>>('postListStore', postList);
 
 export {postListStore};

@@ -1,33 +1,37 @@
 import {getTimeDifferenceString, getCommentsString} from './util.ts';
+import * as mapping from './serverDataInfo.ts';
 
-interface PostItemProps{
+export interface IPostItem{
     postId: number;
-    owner: string;
-    score: number;
-    time: number;
-    title: string;
-    type: string;
-    url: string;
+    owner: String;
+    score: Number;
+    time: String;
+    title: String;
+    type: mapping.CONTENT_TYPES;
+    url: String;
+    kids: Array<Number>;
+    commentsCount: number;
 }
 
-export class PostItem {
+class PostItem implements IPostItem{
     postId: number;
     owner: String;
     descendants: Number;
     kids: Array<Number>;
     score: Number;
-    time: string;
+    time: String;
     title: String;
-    type: String;
+    type: mapping.CONTENT_TYPES;
     url: String;
     commentsCount: number;
     constructor(postId: number,
-                owner: string,
+                owner: String,
                 score: number,
-                time: string,
-                title: string,
-                type: string,
-                url: string){
+                time: String,
+                title: String,
+                type: mapping.CONTENT_TYPES,
+                url: String,
+                kids: Array<Number>){
         this.postId = postId;
         this.owner = owner;
         this.score = score;
@@ -35,68 +39,43 @@ export class PostItem {
         this.title = title;
         this.type = type;
         this.url = url;
+        this.kids = kids;
     }
 }
 
-// Clent side postdetail keys
-const POSTID = "postId";
-const OWNER = "owner";
-const DESCENDANTS = "descendants";
-const KIDS = "kids";
-const SCORE = "score";
-const TIME = "time";
-const TITLE = "title";
-const TYPE = "type";
-const URL = "url"
-
-let CLIENT_KEY_LIST:Array<string> = new Array();
-CLIENT_KEY_LIST = [POSTID, OWNER, DESCENDANTS, KIDS, SCORE, TIME, TITLE, TYPE, URL];
-// Server side postdetail keys
-const SV_POSTID = "id";
-const SV_OWNER = "by";
-const SV_DESCENDANTS = "descendants";
-const SV_KIDS = "kids";
-const SV_SCORE = "score";
-const SV_TIME = "time";
-const SV_TITLE = "title";
-const SV_TYPE = "type";
-const SV_URL = "url"
-
-var postDetailJsonClassMap = new Map();
-postDetailJsonClassMap.set(POSTID, SV_POSTID);
-postDetailJsonClassMap.set(OWNER, SV_OWNER);
-postDetailJsonClassMap.set(DESCENDANTS, SV_DESCENDANTS);
-postDetailJsonClassMap.set(KIDS, SV_KIDS);
-postDetailJsonClassMap.set(SCORE, SV_SCORE);
-postDetailJsonClassMap.set(TIME, SV_TIME);
-postDetailJsonClassMap.set(TITLE, SV_TITLE);
-postDetailJsonClassMap.set(TYPE, SV_TYPE);
-postDetailJsonClassMap.set(URL, SV_URL);
+function checkDataValidity(data: any){
+    const type = data.hasOwnProperty(mapping.postDetailJsonClassMap.get(mapping.TYPE)) ? data[mapping.postDetailJsonClassMap.get(mapping.TYPE)] : "None";
+    if (type == mapping.CONTENT_TYPES.NONE){
+        console.error("Found a new content type which is not in Enum and it is ", type);
+    }
+}
 
 export function createPostItem(data: any){
 
-    const postId = data.hasOwnProperty(postDetailJsonClassMap.get(POSTID)) ? data[postDetailJsonClassMap.get(POSTID)] : 0;
-    const owner = data.hasOwnProperty(postDetailJsonClassMap.get(OWNER)) ? data[postDetailJsonClassMap.get(OWNER)] : "No Owner";
-    const score = data.hasOwnProperty(postDetailJsonClassMap.get(SCORE)) ? data[postDetailJsonClassMap.get(SCORE)] : 0;
-    const time = data.hasOwnProperty(postDetailJsonClassMap.get(TIME)) ? data[postDetailJsonClassMap.get(TIME)] : 0;
-    const type = data.hasOwnProperty(postDetailJsonClassMap.get(TYPE)) ? data[postDetailJsonClassMap.get(TYPE)] : "None";
-    const title = data.hasOwnProperty(postDetailJsonClassMap.get(TITLE)) ? data[postDetailJsonClassMap.get(TITLE)] : 0;
-    const url = data.hasOwnProperty(postDetailJsonClassMap.get(URL)) ? data[postDetailJsonClassMap.get(URL)] : 0;
+    checkDataValidity(data);
+    const postId = data.hasOwnProperty(mapping.postDetailJsonClassMap.get(mapping.POSTID)) ? data[mapping.postDetailJsonClassMap.get(mapping.POSTID)] : 0;
+    const owner = data.hasOwnProperty(mapping.postDetailJsonClassMap.get(mapping.OWNER)) ? data[mapping.postDetailJsonClassMap.get(mapping.OWNER)] : "No Owner";
+    const score = data.hasOwnProperty(mapping.postDetailJsonClassMap.get(mapping.SCORE)) ? data[mapping.postDetailJsonClassMap.get(mapping.SCORE)] : 0;
+    const time = data.hasOwnProperty(mapping.postDetailJsonClassMap.get(mapping.TIME)) ? data[mapping.postDetailJsonClassMap.get(mapping.TIME)] : 0;
+    const type = data.hasOwnProperty(mapping.postDetailJsonClassMap.get(mapping.TYPE)) ? data[mapping.postDetailJsonClassMap.get(mapping.TYPE)] : "None";
+    const title = data.hasOwnProperty(mapping.postDetailJsonClassMap.get(mapping.TITLE)) ? data[mapping.postDetailJsonClassMap.get(mapping.TITLE)] : 0;
+    const url = data.hasOwnProperty(mapping.postDetailJsonClassMap.get(mapping.URL)) ? data[mapping.postDetailJsonClassMap.get(mapping.URL)] : 0;
+    const kids = data.hasOwnProperty(mapping.postDetailJsonClassMap.get(mapping.KIDS)) ? data[mapping.postDetailJsonClassMap.get(mapping.KIDS)] : [];
 
     // Get time difference from unix time
     let timeString = getTimeDifferenceString(time);
-    let iPostItem = new PostItem(postId, owner, score, timeString, title, type, url);
+    let iPostItem = new PostItem(postId, owner, score, timeString, title, type, url, kids);
     
     // Fetch more properties
-    if(data.hasOwnProperty(postDetailJsonClassMap.get(KIDS))){
-        let kids:Array<number> = data[postDetailJsonClassMap.get(KIDS)];
+    if(data.hasOwnProperty(mapping.postDetailJsonClassMap.get(mapping.KIDS))){
+        let kids:Array<number> = data[mapping.postDetailJsonClassMap.get(mapping.KIDS)];
         let len = getCommentsString(kids.length);
         console.log("Comments length is", len);
         iPostItem.commentsCount = parseInt(len);
     }
 
-    if(data.hasOwnProperty(postDetailJsonClassMap.get(OWNER))){
-        iPostItem.owner = data[postDetailJsonClassMap.get(OWNER)];
+    if(data.hasOwnProperty(mapping.postDetailJsonClassMap.get(mapping.OWNER))){
+        iPostItem.owner = data[mapping.postDetailJsonClassMap.get(mapping.OWNER)];
     }
     
     return iPostItem;

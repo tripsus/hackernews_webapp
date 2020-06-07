@@ -1,17 +1,16 @@
 import {orchestrator} from 'satcheljs';
-import {fetchTopPosts, fetchPosts, addPost} from '../action/action.ts';
+import {fetchTopPosts, fetchPosts, addPost} from '../action/actions.ts';
 import {createPostItem} from '../store/PostItem.ts';
-import {PostFetchDetails, postIdList, POST_FETCH_THRESHOLD} from './config.ts'
+import {PostFetchDetails, postIdList, POST_FETCH_THRESHOLD, BASEURL as baseUrl} from './config.ts'
+import { IPostItem } from '../store/PostItem';
 
 const axios = require('axios');
 
-const baseUrl = "https://hacker-news.firebaseio.com/v0/";
-
-export const fetchTopPostOrchestrator =  orchestrator(fetchTopPosts, (actionMessage) => {
+const fetchTopPostOrchestrator =  orchestrator(fetchTopPosts, (actionMessage) => {
     fetchTopPostsApi()
 });
 
-export const fetchPostsOrchestrator = orchestrator(fetchPosts, () => {
+const fetchPostsOrchestrator = orchestrator(fetchPosts, () => {
     fetchPostDetailsForIds();
 })
 
@@ -67,7 +66,7 @@ async function fetchPostDetail(postId: number) {
 }
 
 function dispatchAddTodoAction(data:any){
-    let iPostItem = createPostItem(data);
+    let iPostItem:IPostItem = createPostItem(data);
     //console.log("dispatchAddTodoAction", iPostItem);
     addPost(iPostItem);
 }

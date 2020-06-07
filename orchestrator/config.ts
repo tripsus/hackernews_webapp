@@ -7,3 +7,5 @@ export class PostFetchDetails{
 export const POST_FETCH_THRESHOLD = 5;
 // Holds the list of PosIds for which we need to fetch PostDetails consumed by PostItem.
 export const postIdList:Array<number> = new Array<number>();
+
+export const BASEURL = "https://hacker-news.firebaseio.com/v0/";
