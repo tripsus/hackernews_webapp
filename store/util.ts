@@ -51,7 +51,7 @@ export function getTimeDifferenceString(postTime:number): string {
     }
     differenceString = differenceString + SPACE_STRING+ PREVIOUS_SUFFIX
     
-    console.log("Time difference is", differenceString);
+    console.debug("Time difference is", differenceString);
     return differenceString;
 }
 

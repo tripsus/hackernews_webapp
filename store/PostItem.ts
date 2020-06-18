@@ -70,7 +70,7 @@ export function createPostItem(data: any){
     if(data.hasOwnProperty(mapping.postDetailJsonClassMap.get(mapping.KIDS))){
         let kids:Array<number> = data[mapping.postDetailJsonClassMap.get(mapping.KIDS)];
         let len = getCommentsString(kids.length);
-        console.log("Comments length is", len);
+        console.debug("Comments length is", len);
         iPostItem.commentsCount = parseInt(len);
     }
 

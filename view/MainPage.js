@@ -4,6 +4,7 @@ import { observer } from "mobx-react";
 import { fetchPosts } from '../action/actions.ts'
 import { postLists } from "../store/store.ts";
 import { throttle } from "lodash";
+import history from '../history'
 
 import {fetchTopPosts, fetchComments} from "../action/actions.ts";
 
@@ -69,8 +70,9 @@ let PostDetailView = observer((props) => {
 let ListItem = observer((props) => {
     const [index, indexState] = useState(props.index);
     function handleCommentLoad(){
-        console.log("MonsteR:: Comment clicked at index ", props.item.kids);
+        console.info("MonsteR:: Comment clicked at index ", props.item.kids);
         fetchComments(props.item.kids);
+        history.push('/comments')
     }
     return(
             <tr className={styles.listItem}>
@@ -98,7 +100,7 @@ let PostListPageView = observer(() => {
             window.removeEventListener('scroll', handleScroll);
         }
     }, []);
-    //console.log("MonsteR::PostListPageView", postListStore());
+
     return(
     <div id="approot" className={styles.roottxt}>
         <table className={styles.table}>

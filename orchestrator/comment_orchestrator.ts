@@ -6,17 +6,12 @@ import {BASEURL as baseUrl} from './config.ts'
 
 const fetchCommentOrchestrator = orchestrator(fetchComments, (actionMessage:ActionMessage) => {
     actionMessage.commentIds.map((commentId) => {
-        console.log(commentId);
         return fetchCommentApi(commentId);
     });
 });
 
-// function fetchCommentInit(id: number){
-//     fetchCommentApi(id);
-// }
-
 async function fetchCommentApi(commentId:Number){
-    console.log("MonsteR::Comment fetch api", commentId);
+    console.debug("MonsteR::Comment fetch api", commentId);
     let url:String = baseUrl + "item/" + commentId.toString() + ".json";
     await axios.get(url)
     .then(
