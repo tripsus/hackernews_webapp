@@ -20,6 +20,7 @@ class CommentItem implements ICommentItem{
     text: String;
     time: String;
     type: mapping.CONTENT_TYPES;
+    childCommentList: Array<ICommentItem>;
 
     constructor(owner: String,
                 commentId: number,
@@ -35,6 +36,7 @@ class CommentItem implements ICommentItem{
                     this.text = text;
                     this.time = time;
                     this.type = type;
+                    new Array<ICommentItem>()
                 }
 };
 

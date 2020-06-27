@@ -37,7 +37,7 @@ function fetchPostDetailsForIds(){
         console.error("MonsteR:: Not able to fetch any post do we have a valid internet connection?")
     }
 
-    console.debug("MonsteR::", postIdList);
+    // console.debug("MonsteR::", postIdList);
 
     let postsFetchEndIndex:number = PostFetchDetails.POSTS_FETCHED + POST_FETCH_THRESHOLD;
     // If we have already fetched top 500 we don't have anything more to fetch

@@ -68,18 +68,18 @@ let PostDetailView = observer((props) => {
 });
 
 let ListItem = observer((props) => {
-    const [index, indexState] = useState(props.index);
+
     function handleCommentLoad(){
         console.info("MonsteR:: Comment clicked at index ", props.item.kids);
         fetchComments(props.item.kids);
         history.push('/comments')
     }
     return(
-            <tr className={styles.listItem}>
-                <UpVoteView upVoteCount={props.item.score}/>
-                <PostDetailView {...props}/>
-                <CommentView commentsCount={props.item.commentsCount} onClick={handleCommentLoad}/>
-            </tr>
+        <tr className={styles.listItem}>
+            <UpVoteView upVoteCount={props.item.score}/>
+            <PostDetailView {...props}/>
+            <CommentView commentsCount={props.item.commentsCount} onClick={handleCommentLoad}/>
+        </tr>
     );
 });
 
