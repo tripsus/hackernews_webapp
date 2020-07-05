@@ -1,5 +1,8 @@
+import { observable } from "mobx";
+
 import {getTimeDifferenceString, getCommentsString} from './util.ts';
 import { SERVER_DATA_KEYS, CONTENT_TYPES } from './serverDataInfo.ts';
+import { ICommentItem } from './CommentItem';
 
 export interface IPostItem{
     postId: number;
@@ -9,21 +12,24 @@ export interface IPostItem{
     title: String;
     type: CONTENT_TYPES;
     url: String;
-    kids: Array<Number>;
+    kids: Array<number>;
     commentsCount: number;
+    commentsList: Array<ICommentItem>
 }
 
 class PostItem implements IPostItem{
     postId: number;
     owner: String;
     descendants: Number;
-    kids: Array<Number>;
+    kids: Array<number>;
     score: Number;
     time: String;
     title: String;
     type: CONTENT_TYPES;
     url: String;
     commentsCount: number;
+    commentsList: Array<ICommentItem>;
+
     constructor(postId: number,
                 owner: String,
                 score: number,
@@ -38,6 +44,7 @@ class PostItem implements IPostItem{
         this.title = title;
         this.type = type;
         this.url = url;
+        this.commentsList = observable(new Array<ICommentItem>());
     }
 }
 

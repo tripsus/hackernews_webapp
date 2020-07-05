@@ -12,6 +12,8 @@ const COMMENT_STRING = "comment";
 const PLURAL_SUFFIX = "s";
 const SPACE_STRING = " ";
 
+const NO_PARENT = -1;
+
 function getTimeDifference(postTime:number): number{
     const currentTime = Math.floor((new Date()).getTime() / 1000);
     let timeDifference = currentTime - postTime;

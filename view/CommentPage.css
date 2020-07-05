@@ -4,6 +4,7 @@
 
 .commentHeader {
     background-color: darkgray;
+    flex: 1;
 }
 
 .commentContent {

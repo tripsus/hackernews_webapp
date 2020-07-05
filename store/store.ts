@@ -1,2 +1,2 @@
-export {postListStore as postLists} from './PostItemList.ts';
-export {commentListStore as commentList} from './CommentLists.ts'
+export {postListStore as postList} from './PostItemList.ts';
+export {postCommentRealtionMap} from './PostItemList.ts';
