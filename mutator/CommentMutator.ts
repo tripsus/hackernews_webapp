@@ -5,22 +5,23 @@ import { NO_PARENT } from './constants.ts'
 
 const commentMutator =  mutator(addComment, (actionMessage) => {
     console.debug("MonsteR::Mutator::", actionMessage);
-    let postListData = postList();
     let parentPostList = findParentPostForInsertion(actionMessage.commentItem.parentId)
     // find the parent post
-    let postItem = postListData.find((postItem) => { return postItem.postId === parentPostList[parentPostList.length-1]});
-    let commentsList = postItem.commentsList;
+    let parentPostId = parentPostList.pop();
+    let postItem = postList.find((postItem) => { return postItem.postId === parentPostId});
+    let commentsMap = postItem.commentsMap;
     // traverse the child tree to get actual comment item to insert comment
-    for (var commentArrayIndex = parentPostList.length-2; commentArrayIndex >= 0; commentArrayIndex--){
-        let commentItem = commentsList.find((commentItem) => { return commentItem.commentId === parentPostList[commentArrayIndex]})
+    while (parentPostList.length > 0){
+        parentPostId = parentPostList.pop();
+        let commentItem = commentsMap.get(parentPostId);
         if (commentItem === undefined) {
-            console.error("Parent id not found for id ", parentPostList[commentArrayIndex]);
+            console.error("Parent id not found for id ", parentPostId);
             break;
         } else {
-            commentsList = commentItem.childCommentList;
+            commentsMap = commentItem.subCommentsMap;
         }
     }
-    commentsList.push(actionMessage.commentItem);
+    commentsMap.set(actionMessage.commentItem.commentId, actionMessage.commentItem);
 });
 
 export default commentMutator;

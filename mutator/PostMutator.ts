@@ -5,7 +5,7 @@ import { NO_PARENT } from './constants.ts'
 
 const postMutator =  mutator(addPost, (actionMessage) => {
     console.debug("MonsteR::Mutator::", actionMessage);
-    postList().push(actionMessage.post);
+    postList.push(actionMessage.post);
     postCommentRealtionMap[actionMessage.post.postId] = NO_PARENT;
 });
 

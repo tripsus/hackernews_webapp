@@ -7,7 +7,7 @@ import {getTimeDifferenceString} from './util.ts';
 export interface ICommentItem{
     owner: String;
     commentId: number;
-    subComments: Array<number>;
+    subCommentsMap: Map<number, ICommentItem>;
     parentId: number;
     text: String;
     time: String;
@@ -18,7 +18,7 @@ export interface ICommentItem{
 class CommentItem implements ICommentItem{
     owner: String;
     commentId: number;
-    subComments: Array<number>; //kids in json data
+    subCommentsMap: Map<number, ICommentItem>; //kids in json data
     parentId: number;
     text: String;
     time: String;
@@ -27,14 +27,14 @@ class CommentItem implements ICommentItem{
 
     constructor(owner: String,
                 commentId: number,
-                subComments: Array<number>,
+                subCommentsMap: Map<number, ICommentItem>;
                 parentId: number,
                 text: String,
                 time: String,
                 type: mapping.CONTENT_TYPES){
                     this.owner = owner;
                     this.commentId = commentId;
-                    this.subComments = subComments;
+                    this.subCommentsMap = subCommentsMap;
                     this.parentId = parentId;
                     this.text = text;
                     this.time = time;
@@ -50,13 +50,13 @@ export function createCommentItem(data:any){
     const text = data[SERVER_DATA_KEYS.TEXT];
     const time = getTimeDifferenceString(data[SERVER_DATA_KEYS.TIME]);
     const type = data[SERVER_DATA_KEYS.TYPE];
-    let subComments = new Array<number>();
+    let subCommentsMap = new Map<number, ICommentItem>();
     
     if (data[SERVER_DATA_KEYS.KIDS] !== undefined){
-        subComments = data[SERVER_DATA_KEYS.KIDS];
+        subCommentsMap = data[SERVER_DATA_KEYS.KIDS];
     }
     
-    let oCommentItem: ICommentItem = new CommentItem(owner, commentId, subComments, parentId, text, time, type);
+    let oCommentItem: ICommentItem = new CommentItem(owner, commentId, subCommentsMap, parentId, text, time, type);
     return oCommentItem;
 }
 
