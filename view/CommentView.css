@@ -1,0 +1,14 @@
+.commentListItem {
+    background-color: burlywood;
+}
+
+.commentHeader {
+    background-color: darkgray;
+    flex: 1;
+}
+
+.commentContent {
+    background-color: darkgoldenrod;
+    font-style: oblique;
+    font-family: Calibri;
+}
