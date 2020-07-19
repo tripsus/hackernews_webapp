@@ -3,8 +3,8 @@ import { addComment } from '../action/actions.ts';
 import { postList, postCommentRealtionMap} from '../store/store.ts';
 import { NO_PARENT } from './constants.ts'
 
-const commentMutator =  mutator(addComment, (actionMessage) => {
-    console.debug("MonsteR::Mutator::", actionMessage);
+const addCommentMutator =  mutator(addComment, (actionMessage) => {
+    console.debug("addCommentMutator entry:: actionMessage is ", actionMessage);
     let parentPostList = findParentPostForInsertion(actionMessage.commentItem.parentId)
     // find the parent post
     let parentPostId = parentPostList.pop();
@@ -24,7 +24,7 @@ const commentMutator =  mutator(addComment, (actionMessage) => {
     commentsMap.set(actionMessage.commentItem.commentId, actionMessage.commentItem);
 });
 
-export default commentMutator;
+export default addCommentMutator;
 
 function findParentPostForInsertion(commentParentId: number): Array<number>{
     let parentHierarchyList = new Array<number>();

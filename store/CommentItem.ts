@@ -12,7 +12,6 @@ export interface ICommentItem{
     text: String;
     time: String;
     type: mapping.CONTENT_TYPES;
-    childCommentList: Array<ICommentItem>;
 };
 
 class CommentItem implements ICommentItem{
@@ -23,23 +22,20 @@ class CommentItem implements ICommentItem{
     text: String;
     time: String;
     type: mapping.CONTENT_TYPES;
-    childCommentList: Array<ICommentItem>;
 
     constructor(owner: String,
                 commentId: number,
-                subCommentsMap: Map<number, ICommentItem>;
                 parentId: number,
                 text: String,
                 time: String,
                 type: mapping.CONTENT_TYPES){
                     this.owner = owner;
                     this.commentId = commentId;
-                    this.subCommentsMap = subCommentsMap;
+                    this.subCommentsMap = observable(new Map<number, ICommentItem>());
                     this.parentId = parentId;
                     this.text = text;
                     this.time = time;
                     this.type = type;
-                    this.childCommentList =  observable(new Array<ICommentItem>());
                 }
 };
 
@@ -50,13 +46,16 @@ export function createCommentItem(data:any){
     const text = data[SERVER_DATA_KEYS.TEXT];
     const time = getTimeDifferenceString(data[SERVER_DATA_KEYS.TIME]);
     const type = data[SERVER_DATA_KEYS.TYPE];
-    let subCommentsMap = new Map<number, ICommentItem>();
     
+    let iCommentItem: ICommentItem = new CommentItem(owner, commentId, parentId, text, time, type);
+
     if (data[SERVER_DATA_KEYS.KIDS] !== undefined){
-        subCommentsMap = data[SERVER_DATA_KEYS.KIDS];
+        let subCommentIds = data[SERVER_DATA_KEYS.KIDS];
+        subCommentIds.map(element => {
+            iCommentItem.subCommentsMap.set(element, undefined);
+        })
     }
-    
-    let oCommentItem: ICommentItem = new CommentItem(owner, commentId, subCommentsMap, parentId, text, time, type);
-    return oCommentItem;
+
+    return iCommentItem;
 }
 

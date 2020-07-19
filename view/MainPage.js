@@ -70,8 +70,8 @@ let PostDetailView = observer((props) => {
 let ListItem = observer((props) => {
 
     function handleCommentLoad(){
-        console.info("MonsteR:: Comment clicked at index ", props.item.kids);
-        fetchComments(props.item.kids);
+        console.info("MonsteR:: Comment clicked for post ", props.index);
+        fetchComments(props.item.commentsMap);
         history.push({
             pathname: '/comments',
             postId: props.item.postId
@@ -81,14 +81,14 @@ let ListItem = observer((props) => {
         <tr className={styles.listItem}>
             <UpVoteView upVoteCount={props.item.score}/>
             <PostDetailView {...props}/>
-            <CommentView commentsCount={props.item.commentsCount} onClick={handleCommentLoad}/>
+            <CommentView commentsCount={props.item.commentsMap.size} onClick={handleCommentLoad}/>
         </tr>
     );
 });
 
 
 let PostListPageView = observer(() => {
-    let postListData = postList()
+    let postListData = postList
     // Todo: Add throttling
     function handleScroll(){
         console.log("MonsteR:: Scroll Event");

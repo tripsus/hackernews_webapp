@@ -4,7 +4,7 @@ import styles from "./CommentPage.css"
 import { postList } from "../store/store.ts";
 
 import {fetchCommentOrchestrator} from '../orchestrator/comment_orchestrator.ts';
-import {commentMutator} from '../mutator/CommentMutator.ts';
+import {addCommentMutator} from '../mutator/CommentMutator.ts';
 
 let CommentHeader = observer((props) => {
     function prepareHeaderContent(commentAuthor, commentDuration){
@@ -33,14 +33,13 @@ let CommentContent = observer((props) => {
 })
 
 let CommentListItem = observer((props) =>{
-
     let handleCommentClick = () => {
         const commentId = props.commentItem.commentId;
     }
     return(
         <tr className={styles.commentListItem}>
             <td>
-                <CommentHeader owner={props.commentItem.owner} time={props.commentItem.time} subCommentsCount={props.commentItem.subComments.length}/>
+                <CommentHeader owner={props.commentItem.owner} time={props.commentItem.time} subCommentsCount={props.commentItem.subCommentsMap.size}/>
                 <CommentContent text={props.commentItem.text} />
             </td>
         </tr>
@@ -50,16 +49,18 @@ let CommentListItem = observer((props) =>{
 
 let CommentPageView = observer((props) => {
     let postId = props.location.postId;
-    let postLists = postList();
-    let postItem = postLists.find((postItem) => {return (postItem.postId === postId)});
-    let commentList = postItem.commentsList;
-    const[commentListProp, setCommentList] = useState(commentList)
+    let postItem = postList.find((postItem) => {return (postItem.postId === postId)});
+    let commentsMap = postItem.commentsMap;
+    let commentsIds = Array.from(commentsMap.keys());
     return (
         <table>
             <tbody>
             {
-                commentListProp.map((commentItem, index) => {
-                    return <CommentListItem commentItem={commentItem} key={index} />
+                commentsIds.map((commentId) => {
+                    let commentItem = commentsMap.get(commentId);
+                    if(commentItem !== undefined){
+                        return (<CommentListItem commentItem={commentItem} key={commentId} />);
+                    }
                 })
             }
             </tbody>

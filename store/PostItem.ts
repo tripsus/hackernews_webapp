@@ -12,23 +12,19 @@ export interface IPostItem{
     title: String;
     type: CONTENT_TYPES;
     url: String;
-    kids: Array<number>;
-    commentsCount: number;
-    commentsList: Array<ICommentItem>
+    commentsMap: Map<number, ICommentItem>;
 }
 
 class PostItem implements IPostItem{
     postId: number;
     owner: String;
     descendants: Number;
-    kids: Array<number>;
     score: Number;
     time: String;
     title: String;
     type: CONTENT_TYPES;
     url: String;
-    commentsCount: number;
-    commentsList: Array<ICommentItem>;
+    commentsMap: Map<number, ICommentItem>;
 
     constructor(postId: number,
                 owner: String,
@@ -44,7 +40,7 @@ class PostItem implements IPostItem{
         this.title = title;
         this.type = type;
         this.url = url;
-        this.commentsList = observable(new Array<ICommentItem>());
+        this.commentsMap = observable(new Map<number, ICommentItem>());
     }
 }
 
@@ -76,8 +72,9 @@ export function createPostItem(data: any){
         let kids:Array<number> = data[SERVER_DATA_KEYS.KIDS];
         let len = getCommentsString(kids.length);
         console.debug("Comments length is", len);
-        iPostItem.commentsCount = parseInt(len);
-        iPostItem.kids = kids;
+        kids.map((element, index) => {
+            iPostItem.commentsMap.set(element, undefined);
+        })
     }
 
     return iPostItem;

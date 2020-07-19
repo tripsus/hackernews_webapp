@@ -26,7 +26,7 @@ export const fetchPosts = action(
 export const fetchComments = action(
     ACTION_TYPES.FETCH_COMMENTS,
     (comment: Array<Number>) => {
-        return {commentIds: comment}
+        return {commentsMap: comment}
     }
 );
 
